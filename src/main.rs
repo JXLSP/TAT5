@@ -1,3 +1,3 @@
 fn main() {
-    app_web_api::main();
+    println!("Hello, world!");
 }

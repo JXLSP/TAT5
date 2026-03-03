@@ -1,11 +1,25 @@
-workspace = { members = [".", "api", "entity","services"] }
 [package]
-name = "SZT703"
+name = "TAT5"
 version = "0.1.0"
-dition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
+edition = "2024"
 
 [dependencies]
-app_web_api = { path = "api"}
+anyhow = "1.0.102"
+async-trait = "0.1.89"
+axum = "0.8.8"
+chrono = "0.4.44"
+config = "0.15.19"
+jiff = "0.2.22"
+redis = "1.0.4"
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.149"
+sqlx = { version = "0.8.6", features = ["runtime-tokio-rustls", "sqlite", "mysql", "postgres", "chrono", "uuid"] }
+thiserror = "2.0.18"
+tokio = { version = "1.50.0", features = ["full"] }
+tower = "0.5.3"
+tower-http = "0.6.8"
+tracing = "0.1.44"
+tracing-appender = "0.2.4"
+tracing-subscriber = { version = "0.3.22", features = ["json"] }
+uuid = { version = "1.21.0", features = ["v4", "serde"] }
+validator = "0.20.0"

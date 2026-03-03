@@ -1,0 +1,22 @@
+use anyhow::Context;
+use config::Config;
+use std::{fs, sync::OnceLock};
+
+pub static CFG: OnceLock<Config> = OnceLock::new();
+
+pub fn init(cfg_file: &str) -> anyhow::Result<()> {
+    let path =
+        fs::canonicalize(cfg_file).with_context(|| format!("加载配置文件错误: {}", cfg_file))?;
+
+    let cfg = Config::builder()
+        .add_source(config::File::with_name(path.to_str().unwrap()))
+        .build()
+        .with_context(|| format!("初始化配置错误"))?;
+
+    let _ = CFG.set(cfg);
+    Ok(())
+}
+
+pub fn get() -> &'static Config {
+    CFG.get().unwrap_or_else(|| panic!("配置文件未初始化..."))
+}
